@@ -10,26 +10,26 @@ function Home() {
           Our mission is to create a lasting impact in the lives of underprivileged children 
           and communities.
         </p>
-        <div>
-          <button className="btn btn-warning btn-custom me-3">Donate Now</button>
+        <div className="d-flex flex-column flex-sm-row gap-2 justify-content-center">
+          <button className="btn btn-warning btn-custom">Donate Now</button>
           <button className="btn btn-outline-light btn-custom">Our Work</button>
         </div>
       </div>
 
       {/* Stats Section */}
       <div className="container py-5">
-        <div className="row text-center">
-          <div className="col-md-4">
-            <h3>10,000+</h3>
-            <p>Children Educated</p>
+        <div className="row text-center g-4">
+          <div className="col-sm-6 col-md-4">
+            <h3 className="display-4 text-primary">10,000+</h3>
+            <p className="lead">Children Educated</p>
           </div>
-          <div className="col-md-4">
-            <h3>50+</h3>
-            <p>Projects Completed</p>
+          <div className="col-sm-6 col-md-4">
+            <h3 className="display-4 text-success">50+</h3>
+            <p className="lead">Projects Completed</p>
           </div>
-          <div className="col-md-4">
-            <h3>20+</h3>
-            <p>States Covered</p>
+          <div className="col-12 col-md-4">
+            <h3 className="display-4 text-warning">20+</h3>
+            <p className="lead">States Covered</p>
           </div>
         </div>
       </div>

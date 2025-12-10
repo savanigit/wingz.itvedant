@@ -1,8 +1,14 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function About() {
+  const navigate = useNavigate();
+
   return (
     <div className="container py-5">
+      <button onClick={() => navigate(-1)} className="btn btn-outline-secondary mb-3">
+        ← Back
+      </button>
       {/* Mission and Vision Section */}
       <div className="row mb-5 align-items-center">
         <div className="col-md-6">
