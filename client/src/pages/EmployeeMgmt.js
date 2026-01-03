@@ -1,21 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function EmployeeMgmt() {
   const navigate = useNavigate();
+  const [employees, setEmployees] = useState([]);
 
-  // Dummy Employee Data
-  const employees = [
-    { id: 101, name: "Rahul Sharma", role: "Project Manager", dept: "Field Ops", status: "Active" },
-    { id: 102, name: "Priya Singh", role: "HR Executive", dept: "HR", status: "Active" },
-    { id: 103, name: "Amit Verma", role: "Volunteer Lead", dept: "Outreach", status: "On Leave" },
-    { id: 104, name: "Sneha Gupta", role: "Accountant", dept: "Finance", status: "Active" },
-    { id: 105, name: "Vikram Das", role: "Field Coordinator", dept: "Field Ops", status: "Inactive" },
-  ];
+  // This runs automatically when the page loads
+  useEffect(() => {
+    fetchEmployees();
+  }, []);
+
+  const fetchEmployees = async () => {
+    try {
+      // Get data from your Python Backend
+      const response = await axios.get('http://127.0.0.1:8000/api/employees/');
+      setEmployees(response.data);
+    } catch (error) {
+      console.error("Error fetching employees:", error);
+    }
+  };
 
   return (
     <div className="container py-5">
-      {/* Back Button */}
       <button className="btn btn-outline-secondary mb-4" onClick={() => navigate(-1)}>
         &larr; Back to Dashboard
       </button>
@@ -30,37 +37,32 @@ function EmployeeMgmt() {
           <table className="table table-hover mb-0">
             <thead className="table-light">
               <tr>
-                <th>ID</th>
                 <th>Name</th>
                 <th>Role</th>
                 <th>Department</th>
                 <th>Status</th>
-                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
-              {employees.map((emp) => (
-                <tr key={emp.id}>
-                  <td>{emp.id}</td>
-                  <td>
-                    <div className="fw-bold">{emp.name}</div>
-                  </td>
-                  <td>{emp.role}</td>
-                  <td>{emp.dept}</td>
-                  <td>
-                    <span className={`badge ${
-                      emp.status === 'Active' ? 'bg-success' : 
-                      emp.status === 'On Leave' ? 'bg-warning text-dark' : 'bg-secondary'
-                    }`}>
-                      {emp.status}
-                    </span>
-                  </td>
-                  <td>
-                    <button className="btn btn-sm btn-outline-primary me-2">Edit</button>
-                    <button className="btn btn-sm btn-outline-danger">Delete</button>
-                  </td>
-                </tr>
-              ))}
+              {employees.length === 0 ? (
+                <tr><td colSpan="4" className="text-center p-4">No Employees Found in Database</td></tr>
+              ) : (
+                employees.map((emp) => (
+                  <tr key={emp.id}>
+                    <td><div className="fw-bold">{emp.name}</div></td>
+                    <td>{emp.role}</td>
+                    <td>{emp.department}</td>
+                    <td>
+                      <span className={`badge ${
+                        emp.status === 'Active' ? 'bg-success' : 
+                        emp.status === 'On Leave' ? 'bg-warning text-dark' : 'bg-secondary'
+                      }`}>
+                        {emp.status}
+                      </span>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>
