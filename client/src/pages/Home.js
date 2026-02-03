@@ -1,8 +1,14 @@
 import React from 'react';
+import SEO from '../components/SEO';
 
 function Home() {
   return (
-    <div>
+    <>
+      <SEO 
+        title="Home - My NGO"
+        description="Empowering communities and changing lives. Join our mission to create lasting impact for underprivileged children through education, healthcare, and livelihood programs."
+        keywords="NGO, charity, donation, social impact, education, healthcare, community development, volunteer"
+      />
       {/* Hero Section */}
       <div className="hero-section">
         <h1 className="hero-title">Empowering Communities, Changing Lives</h1>
@@ -33,7 +39,7 @@ function Home() {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
