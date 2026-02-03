@@ -1,23 +1,39 @@
-# ===========================
-# GLOBAL IGNORE
-# ===========================
-# Ignore React Dependencies
-client/node_modules/
-client/build/
-client/.pnp
-client/.pnp.js
-client/coverage/
-
-# Ignore Python Dependencies (Backend)
-server/venv/
-venv/
-server/__pycache__/
+﻿# Python
 __pycache__/
-*.pyc
-*.sqlite3
-
-# System Files
-.DS_Store
+*.py[cod]
+*.class
+*.so
+.Python
+.venv/
+venv/
+ENV/
+env/
 .env
-.env.local
+
+# Django
 *.log
+local_settings.py
+db.sqlite3
+media/
+
+# Node
+node_modules/
+npm-debug.log*
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build
+build/
+dist/
+*.egg-info/
+
+# PDF files (requirements docs)
+*.pdf
