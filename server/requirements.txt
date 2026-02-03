@@ -1,0 +1,20 @@
+# Django Framework
+Django>=5.0.0
+djangorestframework>=3.14.0
+django-cors-headers>=4.3.0
+
+# Environment Management
+python-decouple>=3.8
+
+# Payment Gateways
+stripe>=7.0.0
+razorpay>=1.4.0
+
+# PDF Generation
+reportlab>=4.0.0
+
+# Database
+mysqlclient>=2.2.0
+
+# Optional: For additional features
+Pillow>=10.0.0
