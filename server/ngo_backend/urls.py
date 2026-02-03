@@ -15,9 +15,32 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include  # <--- Make sure 'include' is imported
+from django.urls import path, include
+from django.http import JsonResponse
+
+def api_root(request):
+    """Root endpoint showing available API routes"""
+    return JsonResponse({
+        'message': 'NGO CMS API',
+        'version': '1.0',
+        'endpoints': {
+            'admin': '/admin/',
+            'api': '/api/',
+            'employees': '/api/employees/',
+            'donations': '/api/donations/',
+            'volunteers': '/api/volunteers/',
+            'contact': '/api/contact/',
+            'events': '/api/events/',
+            'campaigns': '/api/campaigns/',
+            'newsletter': '/api/newsletter/',
+            'payment_config': '/api/payment/config/',
+        },
+        'documentation': 'See README.md for full API documentation',
+        'frontend': 'http://localhost:3000',
+    })
 
 urlpatterns = [
+    path('', api_root, name='api-root'),
     path('admin/', admin.site.urls),
-    path('api/', include('api.urls')), # <--- Add this line!
+    path('api/', include('api.urls')),
 ]
